@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <input type="text" id="num1" placeholder="Enter first number" class="input-field text-3xl mb-4 border border-gray-300 px-4 py-2 rounded-lg">
+        <input type="text" id="num2" placeholder="Enter second number" class="input-field text-3xl mb-4 border border-gray-300 px-4 py-2 rounded-lg">
+        <div class="flex justify-between mb-4">
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('+')">+</button>
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('-')">-</button>
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('*')">*</button>
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('/')">/</button>
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('%')">%</button>
+            <button class="calc-button text-3xl px-4 py-2 rounded-lg bg-blue-500 text-white" onclick="calculate('^')">^</button>
+        </div>
+        <input type="text" id="result" placeholder="Result" readonly class="input-field text-3xl border border-gray-300 px-4 py-2 rounded-lg">
+    </div>
+
+    <script>
+        function calculate(operator) {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var result;
+            switch(operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        result = "Cannot divide by zero";
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                case '%':
+                    result = num1 % num2;
+                    break;
+                case '^':
+                    result = Math.pow(num1, num2);
+                    break;
+                default:
+                    result = "Invalid operator";
+            }
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>
